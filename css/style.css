@@ -1,0 +1,651 @@
+/* ==========================================================================
+   BVS Info – svetainės stiliai
+   Spalvos ir pagrindiniai dydžiai nustatomi :root kintamaisiais.
+   ========================================================================== */
+
+:root {
+  --ink: #182a43;        /* pagrindinis tekstas, tamsus fonas */
+  --muted: #4f617a;      /* antrinis tekstas (kontrastas ≥ 5:1 ant --paper) */
+  --blue: #1245a8;       /* firminė mėlyna iš logotipo */
+  --blue-dark: #0d357f;
+  --blue-pale: #d6e6ff;  /* šviesus akcentas tamsiame fone */
+  --blue-tint: #e3edfa;  /* šviesiai mėlynas fonas (iliustracija, „Apie“, hover) */
+  --blue-soft: #aec8ed;  /* dekoratyviniai stulpeliai */
+  --blue-mid: #6a8cbd;   /* dideli proceso numeriai */
+  --text-2: #455c79;     /* tekstas kortelėse ir formoje, tamsesnis už --muted */
+  --paper: #f4f8fd;      /* puslapio fonas */
+  --line: #d9e3f0;       /* linijos ir rėmeliai */
+  --line-strong: #b4c5de;/* ryškesni rėmeliai: laukai, hover, žymos */
+  --ink-line: #3a506f;   /* linijos tamsiame skyriuje */
+  --ink-text: #bdcce2;   /* tekstas tamsiame skyriuje */
+  --error: #b03a2e;
+  --white: #fff;         /* kortelių ir galvutės paviršius (tamsioje temoje – tamsus) */
+  --on-blue: #fff;       /* tekstas ant --blue mygtukų */
+  --surface-dark: #182a43;   /* tamsus skyrius ir poraštė (abiejose temose) */
+  --on-dark: #f3f7ff;
+  --on-dark-muted: #bdcce2;
+  --serif: Georgia, "Times New Roman", serif;
+  /* Sisteminis šriftas: Windows – Segoe UI, Mac/iOS – San Francisco, Android – Roboto. Jokių išorinių užklausų. */
+  --sans: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --header-h: 82px;
+}
+
+/* Tamsi tema: įjungiama data-theme="dark" ant <html> (perjungiklis galvutėje arba sistemos nustatymas) */
+html[data-theme="dark"] {
+  --ink: #e8eef8;
+  --muted: #a9b8cf;
+  --text-2: #c3cfe0;
+  --blue: #7ea6ff;
+  --blue-dark: #a3c0ff;
+  --blue-pale: #9fc0ff;
+  --blue-tint: #16233a;
+  --blue-soft: #35507f;
+  --blue-mid: #8fa9d6;
+  --paper: #0f1a2b;
+  --line: #273853;
+  --line-strong: #3b4e6e;
+  --white: #172540;
+  --on-blue: #0b1526;
+  --surface-dark: #0a1322;
+  --ink-line: #2a3a55;
+  --ink-text: #bdcce2;
+  --error: #ff8a80;
+  color-scheme: dark;
+}
+html[data-theme="dark"] .fact,
+html[data-theme="dark"] .service,
+html[data-theme="dark"] .lang ul { box-shadow: none; }
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.65 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+img { max-width: 100%; height: auto; }
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.wrap { width: min(1200px, 90%); margin: auto; }
+.muted { color: var(--muted); }
+
+/* Prieinamumas: nuoroda „Pereiti į turinį“ matoma tik su klaviatūra */
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -60px;
+  background: var(--surface-dark);
+  color: var(--on-dark);
+  padding: 10px 16px;
+  border-radius: 4px;
+  z-index: 100;
+}
+.skip-link:focus { top: 12px; }
+
+/* Pavyzdžio juosta -------------------------------------------------------- */
+.demo {
+  background: var(--surface-dark);
+  color: var(--blue-pale);
+  text-align: center;
+  font-size: 12px;
+  padding: 7px 15px;
+  letter-spacing: .04em;
+}
+
+/* Galvutė ------------------------------------------------------------------ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: var(--header-h);
+}
+
+.brand { display: inline-flex; align-items: center; }
+.brand img { height: 46px; width: auto; display: block; }
+.brand .logo-dark { display: none; }
+html[data-theme="dark"] .brand .logo-light { display: none; }
+html[data-theme="dark"] .brand .logo-dark { display: block; }
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  font-size: 14px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+.site-header nav a:hover { color: var(--blue); text-decoration: underline; }
+.site-header nav a.btn:hover { color: var(--on-blue); text-decoration: none; }
+
+.nav-tools { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+.menu {
+  display: none;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* Temos perjungiklis */
+.theme {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 38px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  color: var(--ink);
+  padding: 0;
+}
+.theme:hover { border-color: var(--line-strong); color: var(--blue); }
+.theme svg { width: 20px; height: 20px; }
+.theme .ico-sun { display: none; }
+html[data-theme="dark"] .theme .ico-sun { display: block; }
+html[data-theme="dark"] .theme .ico-moon { display: none; }
+
+/* Kalbų perjungiklis */
+.lang { position: relative; }
+.lang summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background: var(--white);
+  user-select: none;
+}
+.lang summary::-webkit-details-marker { display: none; }
+.lang summary:hover { border-color: var(--line-strong); }
+.lang .globe { font-size: 15px; line-height: 1; }
+.lang .caret { font-size: 11px; color: var(--muted); }
+.lang[open] .caret { transform: rotate(180deg); }
+.lang ul {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  min-width: 170px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: 0 12px 30px rgba(24, 42, 67, .14);
+  z-index: 30;
+}
+.lang li a {
+  display: block;
+  padding: 9px 16px;
+  font-size: 14px;
+}
+.lang li a:hover { background: var(--paper); color: var(--blue); }
+.lang li a[aria-current] { font-weight: bold; color: var(--blue); }
+.lang li a[aria-current]::after { content: ' ✓'; }
+
+/* Mygtukai ----------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--blue);
+  padding: 13px 22px;
+  background: var(--blue);
+  color: var(--on-blue);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 3px;
+  transition: background .2s, transform .2s;
+}
+.btn:hover { background: var(--blue-dark); transform: translateY(-2px); }
+.btn.light { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn.light:hover { background: var(--blue-tint); }
+
+/* Herojus ------------------------------------------------------------------ */
+.hero {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  gap: 55px;
+  padding: 76px 0 82px;
+  align-items: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+}
+.eyebrow::before { content: ''; width: 22px; height: 2px; background: currentColor; }
+
+h1 {
+  font: normal clamp(35px, 3.8vw, 51px)/1.14 var(--serif);
+  letter-spacing: -1.5px;
+  margin: 24px 0;
+}
+h1 em { font-style: normal; color: var(--blue); }
+
+.lead { max-width: 490px; color: var(--muted); font-size: 17px; margin: 0 0 30px; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.micro { font-size: 14px; color: var(--muted); margin: 24px 0 0; }
+
+/* Faktų kortelės herojaus dešinėje (vietoj iliustracijos) */
+.facts {
+  display: grid;
+  gap: 14px;
+  align-content: center;
+  padding: 34px 0 34px 34px;
+  position: relative;
+  isolation: isolate;
+}
+.facts::before {
+  content: '';
+  position: absolute;
+  inset: 0 -40px 0 0;
+  background: var(--blue-tint);
+  border-radius: 4px;
+  z-index: -1;
+}
+.fact {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 20px 24px;
+  box-shadow: 0 10px 30px rgba(24, 59, 112, .06);
+}
+.fact:nth-child(2) { margin-left: 28px; }
+.fact:nth-child(3) { margin-left: 56px; }
+.fact b {
+  font: normal 36px/1 var(--serif);
+  color: var(--blue);
+  min-width: 92px;
+  white-space: nowrap;
+}
+.fact span { font-size: 14px; line-height: 1.45; color: var(--text-2); }
+
+/* Skyriai ------------------------------------------------------------------ */
+section { padding: 85px 0; }
+#procesas { padding-bottom: 45px; }
+#apie { padding-bottom: 65px; }
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 40px;
+  margin-bottom: 35px;
+}
+.section-head p { max-width: 330px; color: var(--muted); font-size: 14px; margin: 0; }
+
+h2 {
+  font: normal clamp(33px, 4vw, 48px)/1.15 var(--serif);
+  letter-spacing: -1.1px;
+  margin: 15px 0 0;
+}
+
+/* Paslaugų kortelės */
+.services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.service {
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  min-width: 0;               /* kad ilgas žodis neišplėstų grid stulpelio */
+}
+h1, h2, h3 { overflow-wrap: break-word; }
+.service .num {
+  color: var(--blue);
+  font-size: 12px;
+  letter-spacing: .08em;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 22px;
+}
+.service h3 { font: normal 27px/1.2 var(--serif); margin: 25px 0 0; min-height: 66px; }
+.service-part { margin-top: 19px; }
+.service-part h4 { font-size: 13px; margin: 0 0 9px; color: var(--blue); }
+.service-part p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--text-2); }
+.service-part ul { padding: 0; margin: 0; list-style: none; font-size: 13px; }
+.service-part li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+.service-part li::before { content: '↗'; margin-right: 10px; color: var(--blue); }
+.service > a {
+  margin-top: auto;
+  padding-top: 25px;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--blue);
+}
+.service > a:hover { text-decoration: underline; }
+
+/* Tamsus skyrius – ataskaitos sudėtis */
+.detail { background: var(--surface-dark); color: var(--on-dark); }
+.detail-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 95px; }
+.detail .eyebrow { color: var(--blue-pale); }
+.detail p { color: var(--on-dark-muted); font-size: 15px; }
+.detail .btn {
+  margin-top: 24px;
+  background: var(--blue-pale);
+  border-color: var(--blue-pale);
+  color: var(--surface-dark);
+}
+.detail .btn:hover { background: var(--on-dark); }
+
+.detail details { border-bottom: 1px solid var(--ink-line); padding: 20px 0; }
+.detail summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+}
+.detail summary::-webkit-details-marker { display: none; }
+.detail summary::after { content: '+'; font-size: 24px; color: var(--blue-pale); }
+.detail details[open] summary::after { content: '−'; }
+.detail details p { font-size: 14px; margin: 10px 0 3px; }
+.fine-print { font-size: 12px; margin-top: 18px; }
+
+/* Procesas */
+.process {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  margin: 45px 0 0;
+}
+.step { border-top: 1px solid var(--line-strong); padding-top: 20px; }
+.step b { font: normal 35px var(--serif); color: var(--blue-mid); }
+.step h3 { font: normal 23px var(--serif); margin: 15px 0; }
+.step p { font-size: 14px; color: var(--muted); margin: 0; }
+
+/* Apie */
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding-top: 15px; }
+.about-block { background: var(--blue-tint); padding: 40px; border-radius: 4px; }
+.about-block p { color: var(--muted); font-size: 15px; margin: 0 0 16px; }
+.values { display: flex; flex-wrap: wrap; gap: 8px; margin: 25px 0 0; padding: 0; list-style: none; }
+.values li { font-size: 12px; border: 1px solid var(--line-strong); padding: 5px 11px; border-radius: 20px; }
+
+/* Kontaktai ---------------------------------------------------------------- */
+.contact { background: var(--white); border-top: 1px solid var(--line); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
+
+.contact-list { margin: 30px 0 0; }
+.contact-list > div { margin-bottom: 20px; }
+.contact-list dt {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.contact-list dd { margin: 2px 0 0; font-size: 21px; line-height: 1.4; }
+.contact-list dd a:hover { text-decoration: underline; }
+
+/* Žemėlapio nuoroda (atsidaro naujame lange, jokio Google kodo svetainėje) */
+.map-link { margin: 26px 0 0; }
+.map-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: bold;
+  transition: background .2s, border-color .2s;
+}
+.map-link a:hover { background: var(--blue-tint); border-color: var(--line-strong); }
+.map-link svg { width: 20px; height: 27px; flex-shrink: 0; }
+
+.form {
+  background: var(--paper);
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.form h3 { font: normal 25px var(--serif); margin: 0 0 12px; }
+.form-intro { font-size: 14px; line-height: 1.6; color: var(--text-2); margin: 0 0 22px; }
+.form label { display: block; font-size: 12px; font-weight: bold; margin: 15px 0 6px; }
+.form label:first-of-type { margin-top: 0; }
+.form .optional { font-weight: normal; color: var(--muted); }
+.form input, .form textarea, .form select {
+  display: block;
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--line-strong);
+  background: var(--white);
+  border-radius: 3px;
+  color: var(--ink);
+}
+.form input:user-invalid, .form textarea:user-invalid { border-color: var(--error); }
+.phone-row { display: flex; gap: 8px; }
+.phone-row select { width: auto; flex: 0 0 auto; padding-right: 28px; }
+.phone-row input { flex: 1 1 auto; min-width: 0; }
+.form textarea { min-height: 110px; resize: vertical; }
+.form-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+.form-actions .btn { flex: 1 1 180px; }
+#form-status { font-size: 13px; color: var(--blue); margin: 12px 0 0; min-height: 1.2em; }
+#form-status.error { color: var(--error); }
+.form small { display: block; font-size: 13px; color: var(--text-2); margin-top: 12px; line-height: 1.5; }
+.form small a { text-decoration: underline; }
+
+/* Poraštė – tamsi abiejose temose, su baltu logotipu ----------------------- */
+.site-footer { background: var(--surface-dark); color: var(--on-dark-muted); }
+.footer { padding: 34px 0 28px; font-size: 12px; }
+.footer-logo { display: block; height: 40px; width: auto; margin: 0 0 22px; }
+.footer-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 20px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(255, 255, 255, .14);
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--on-dark);
+}
+.footer-note svg { width: 20px; height: 20px; flex-shrink: 0; color: #9fc0ff; margin-top: 1px; }
+.footer-note a { color: #9fc0ff; text-decoration: underline; white-space: nowrap; }
+.footer-row { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid rgba(255, 255, 255, .14); padding-top: 16px; }
+.footer-legal { line-height: 1.6; }
+.footer nav { display: flex; gap: 20px; font-size: 12px; flex-shrink: 0; }
+.footer nav a { text-decoration: underline; color: var(--on-dark-muted); }
+.footer nav a:hover { color: var(--on-dark); }
+
+/* Judesio mažinimas -------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+  .btn:hover { transform: none; }
+}
+
+/* Gulsčias telefonas (plotis iki 950 px, aukštis iki 500 px): mažesni tarpai, iliustracija nerodoma,
+   kad pirmame ekrane tilptų antraštė ir mygtukai */
+@media (max-height: 500px) and (orientation: landscape) and (max-width: 950px) {
+  .demo { display: none; }
+  :root { --header-h: 60px; }
+  .brand img { height: 34px; }
+  .hero { grid-template-columns: 1fr; padding: 24px 0 30px; gap: 20px; }
+  .facts { display: none; }
+  h1 { font-size: 30px; margin: 14px 0; }
+  .lead { font-size: 15px; margin-bottom: 18px; }
+  section { padding: 40px 0; }
+}
+
+/* Spausdinimas: tik turinys ir kontaktai, be navigacijos, iliustracijų ir formos */
+@media print {
+  .demo, .skip-link, .nav-tools, .theme, .site-header nav, .actions, .micro,
+  .form, .map-link svg, .footer-note svg { display: none !important; }
+  .site-header { position: static; border-bottom: 1px solid #000; }
+  body { background: #fff; color: #000; font-size: 11pt; line-height: 1.45; }
+  .wrap { width: 100%; }
+  section, .hero { padding: 18pt 0; }
+  .hero, .services, .process, .about, .contact-grid, .detail-grid { display: block; }
+  .service, .step { break-inside: avoid; margin-bottom: 12pt; }
+  .service { border: 1px solid #999; }
+  .detail { background: none; color: #000; }
+  .detail p, .detail .eyebrow, .detail summary, .eyebrow, .muted, .service-part p,
+  .step p, .about-block p, .contact-list dt, .footer { color: #000; }
+  .detail .btn, .service > a { display: none; }
+  .detail details { border-color: #999; }
+  .about-block, .footer-note, .map-link a { background: none; border: 1px solid #999; }
+  h1 { font-size: 24pt; } h2 { font-size: 18pt; }
+  .contact-list dd { font-size: 12pt; }
+  /* Nuorodų adresai – kad popieriuje būtų matyti, kur jos veda */
+  .map-link a::after, .footer nav a::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+  .site-footer { background: none; color: #000; border-top: 1px solid #000; margin-top: 18pt; }
+  .footer-logo { display: none; }
+  .footer nav a, .footer-note a, .footer-note { color: #000; }
+}
+
+/* Dideli ekranai (2K/4K su įprastu masteliu): platesnis stulpelis, kad kraštai neliktų tušti */
+@media (min-width: 1800px) {
+  .wrap { width: min(1440px, 82%); }
+  body { font-size: 17px; }
+  h1 { font-size: clamp(51px, 2.9vw, 62px); }
+  h2 { font-size: clamp(48px, 2.4vw, 56px); }
+  .lead { max-width: 560px; font-size: 19px; }
+  .fact b { font-size: 40px; }
+  .service-part p, .service-part ul { font-size: 16px; }
+}
+
+/* 4K su 100 % masteliu (retas atvejis): dar platesnis stulpelis ir didesnis bazinis šriftas */
+@media (min-width: 3000px) {
+  .wrap { width: min(1800px, 78%); }
+  body { font-size: 20px; }
+  :root { --header-h: 96px; }
+  .brand img { height: 56px; }
+  .site-header nav, .btn, .lang summary { font-size: 17px; }
+  .service h3 { font-size: 32px; }
+  .service-part p, .service-part ul, .step p, .detail p, .about-block p { font-size: 18px; }
+  .contact-list dd { font-size: 24px; }
+}
+
+/* Siauresnis darbalaukis: 6 meniu punktai, tema, kalba ir mygtukas turi tilpti vienoje eilutėje */
+@media (max-width: 1400px) {
+  .site-header nav { gap: 18px; font-size: 13px; }
+  .site-header nav .btn { padding: 11px 16px; }
+}
+
+/* Planšetės ---------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .menu { display: block; }
+  .nav-tools { margin-left: auto; }
+  .site-header nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    padding: 20px 5.5%;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 30px rgba(24, 42, 67, .12);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .site-header nav.open { display: flex; }
+  .site-header nav a { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+  .site-header nav a.btn { margin-top: 14px; border-bottom: 0; }
+
+  /* Stati planšetė: vienas stulpelis, iliustracija po tekstu, kad kortelė nebūtų suspausta */
+  .hero { grid-template-columns: 1fr; gap: 36px; padding-top: 45px; }
+  .facts { padding: 26px; }
+  .facts::before { inset: 0; }
+  .fact:nth-child(2), .fact:nth-child(3) { margin-left: 0; }
+  .services { grid-template-columns: 1fr; gap: 15px; }
+  .service h3 { min-height: 0; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid > * { min-width: 0; }
+  .service { padding: 22px; }
+  .detail-grid, .contact-grid { gap: 40px; }
+  .about { gap: 35px; }
+}
+
+/* Telefonai ---------------------------------------------------------------- */
+@media (max-width: 680px) {
+  :root { --header-h: 66px; }
+  .wrap { width: 89%; }
+  .brand img { height: 34px; }
+  .nav-tools { gap: 6px; }
+  .lang summary { padding: 8px 9px; gap: 4px; }
+  .lang .caret { display: none; }
+  .menu { padding: 8px 10px; }
+  .theme { width: 38px; }
+
+  .hero { grid-template-columns: 1fr; padding: 35px 0 40px; gap: 30px; }
+  h1 { font-size: 37px; letter-spacing: -1px; }
+  .lead { font-size: 16px; }
+  .facts { padding: 18px; gap: 10px; }
+  .fact { padding: 14px 16px; gap: 14px; }
+  .fact b { font-size: 28px; min-width: 72px; }
+  .fact span { font-size: 13px; }
+  .actions .btn { flex: 1; white-space: nowrap; padding: 12px; }
+
+
+  section { padding: 55px 0; }
+  #procesas { padding-bottom: 30px; }
+  #apie { padding-bottom: 50px; }
+  .section-head { display: block; }
+  .section-head p { margin-top: 20px; }
+
+  .services, .detail-grid, .process, .about, .contact-grid { grid-template-columns: 1fr; }
+  .services { gap: 15px; }
+  .service h3 { min-height: 0; }
+  .service-part { margin-top: 17px; }
+  .service-part ul { font-size: 14px; }
+  .detail-grid { gap: 25px; }
+  .process { gap: 20px; }
+  .about { gap: 25px; padding-top: 0; }
+  .about-block { padding: 28px; }
+  .contact-grid { gap: 35px; }
+  .contact-list dd { font-size: 18px; }
+  .form { padding: 24px; }
+
+  .footer-row { flex-direction: column; gap: 10px; }
+}
