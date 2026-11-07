@@ -497,6 +497,17 @@ h1, h2, h3 { overflow-wrap: break-word; }
 .footer nav a { text-decoration: underline; color: var(--on-dark-muted); }
 .footer nav a:hover { color: var(--on-dark); }
 
+/* Privatumo politikos puslapis --------------------------------------------- */
+.policy-back { margin-left: auto; padding: 10px 16px; }
+.policy { max-width: 760px; padding: 56px 0 72px; }
+.policy h1 { font-size: clamp(32px, 4vw, 44px); margin: 16px 0 8px; }
+.policy-meta { color: var(--muted); font-size: 14px; margin: 0 0 32px; }
+.policy section { padding: 22px 0; border-top: 1px solid var(--line); }
+.policy h2 { font-size: 24px; letter-spacing: -.4px; margin: 0 0 10px; }
+.policy p { color: var(--text-2); margin: 0 0 12px; }
+.policy a { color: var(--blue); text-decoration: underline; }
+.policy-todo { background: #fff1b8; color: #5c4400; padding: 1px 4px; border-radius: 3px; }
+
 /* Judesio mažinimas -------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
